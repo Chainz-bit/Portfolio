@@ -44,7 +44,7 @@ export const About = () => {
                 Halo, saya Diwangga, mahasiswa Rekayasa Perangkat Lunak yang fokus di bidang web frontend. Saya senang mengubah rancangan desain dari Figma menjadi halaman web yang rapi, responsif, dan nyaman dibuka dari laptop maupun HP.
               </p>
               <p>
-                Saya menguasai HTML, CSS, JavaScript, dan React. Selain coding, saya suka belajar tool desain seperti Figma agar tampilan website tidak hanya berfungsi, tapi juga enak dipandang.
+                Saya menguasai HTML, CSS, dan JavaScript. Selain coding, saya suka belajar tool desain seperti Figma agar tampilan website tidak hanya berfungsi, tapi juga enak dipandang.
               </p>
               <p>
                 Saya selalu ingin belajar hal baru, mulai dari tool baru sampai framework yang sedang tren. Buat saya, dunia digital selalu berkembang, jadi kita juga harus siap untuk terus bergerak.

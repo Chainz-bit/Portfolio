@@ -9,18 +9,15 @@ import {
 import { AnimatedBorderButton } from "../components/AnimatedBorderButton";
 
 const skills = [
-"HTML5",
+  "HTML5",
   "CSS3",
   "JavaScript",
-  "React",
-  "Tailwind CSS",
   "Bootstrap",
-  "REST API",
+  "PHP",
+  "Laravel",
   "MySQL",
   "Git",
   "GitHub",
-  "Figma",
-  "Vercel",
 ];
 
 const dots = Array.from({ length: 30 }, (_, i) => ({

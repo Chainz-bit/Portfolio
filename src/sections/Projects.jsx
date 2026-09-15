@@ -15,7 +15,7 @@ const projects = [
     description:
       "Aplikasi web layanan publik untuk pencarian dan pelaporan barang hilang atau temuan di wilayah Indramayu. Dilengkapi fitur filter pencarian cepat multi-parameter (kata kunci, kategori, waktu, dan wilayah) serta formulir pelaporan yang responsif.",
     image: "/projects/project2.png",
-    tags: ["Laravel", "PHP", "Bootstrap", "JavaScript", "MySQL", "REST API"],
+    tags: ["Laravel", "PHP", "Bootstrap", "JavaScript", "MySQL"],
     link: "#",
     github: "#",
   },
