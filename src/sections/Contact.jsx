@@ -4,6 +4,7 @@ import {
   Send,
   CheckCircle,
   AlertCircle,
+  Github,
 } from "lucide-react";
 import { Button } from "@/components/Button";
 import { useState } from "react";
@@ -33,6 +34,12 @@ const contactInfo = [
     label: "WhatsApp",
     value: "+62 851-7438-6642",
     href: "https://wa.me/6285174386642?text=Halo%20Diwangga,%20saya%20tertarik%20bekerja%20sama%20atau%20berdiskusi%20proyek.",
+  },
+  {
+    icon: Github,
+    label: "GitHub",
+    value: "github.com/Chainz-bit",
+    href: "https://github.com/Chainz-bit",
   },
   {
     icon: MapPin,
@@ -116,38 +123,41 @@ export const Contact = () => {
   };
 
   return (
-    <section id="contact" className="py-32 relative overflow-hidden">
-      <div className="absolute top-0 left-0 w-full h-full">
-        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/5 rounded-full blur-3xl" />
-        <div className="absolute bottom-1/4 right-1/4 w-64 h-64 bg-highlight/5 rounded-full blur-3xl" />
+    <section id="contact" className="py-16 sm:py-24 md:py-32 relative overflow-hidden w-full">
+      {/* Background ambient lighting */}
+      <div className="absolute top-0 left-0 w-full h-full pointer-events-none overflow-hidden">
+        <div className="absolute top-1/4 left-1/4 w-72 sm:w-96 h-72 sm:h-96 bg-primary/5 rounded-full blur-3xl" />
+        <div className="absolute bottom-1/4 right-1/4 w-52 sm:w-64 h-52 sm:h-64 bg-highlight/5 rounded-full blur-3xl" />
       </div>
 
-      <div className="container mx-auto px-6 relative z-10">
+      <div className="container mx-auto px-4 sm:px-6 relative z-10 w-full max-w-7xl">
         {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto mb-16">
-          <span className="text-secondary-foreground text-sm font-medium tracking-wider uppercase animate-fade-in">
+        <div className="text-center max-w-3xl mx-auto mb-10 sm:mb-16">
+          <span className="text-secondary-foreground text-xs sm:text-sm font-medium tracking-wider uppercase animate-fade-in inline-block">
             Kontak Saya
           </span>
-          <h2 className="text-4xl md:text-5xl font-bold mt-4 mb-2 animate-fade-in animation-delay-100 text-secondary-foreground">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mt-3 sm:mt-4 mb-2 animate-fade-in animation-delay-100 text-secondary-foreground">
             Tertarik kerja sama, atau
           </h2>
-          <h3 className="text-2xl md:text-3xl font-bold mb-6 animate-fade-in animation-delay-100 text-secondary-foreground">
+          <h3 className="text-2xl sm:text-3xl font-bold mb-4 sm:mb-6 animate-fade-in animation-delay-100 text-secondary-foreground">
             <span className="font-serif italic font-normal text-white">
               sekadar ngobrol santai?
             </span>
           </h3>
-          <p className="text-muted-foreground animate-fade-in animation-delay-200">
+          <p className="text-sm sm:text-base text-muted-foreground animate-fade-in animation-delay-200 leading-relaxed max-w-xl mx-auto">
             Punya ide proyek yang mau dibikin, mau ngajak kolaborasi, atau sekadar mau kenalan? Tulis pesan kamu di bawah ya.
           </p>
         </div>
 
-        <div className="grid lg:grid-cols-2 gap-12 max-w-5xl mx-auto">
-          <div className="glass p-8 rounded-3xl border border-primary/30 animate-fade-in animation-delay-300">
-            <form className="space-y-6" onSubmit={handleSubmit}>
-              <div>
+        {/* Form & Info Grid: 1 column on mobile, 2 columns on lg */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 max-w-5xl mx-auto w-full items-start">
+          {/* Form Message Card */}
+          <div className="glass p-5 sm:p-7 md:p-8 rounded-2xl sm:rounded-3xl border border-primary/30 animate-fade-in animation-delay-300 w-full">
+            <form className="space-y-4 sm:space-y-5" onSubmit={handleSubmit}>
+              <div className="w-full">
                 <label
                   htmlFor="name"
-                  className="block text-sm font-medium mb-2"
+                  className="block text-sm font-medium mb-1.5 sm:mb-2 text-foreground"
                 >
                   Nama
                 </label>
@@ -160,14 +170,14 @@ export const Contact = () => {
                   onChange={(e) =>
                     setFormData({ ...formData, name: e.target.value })
                   }
-                  className="w-full px-4 py-3 bg-surface rounded-xl border border-border focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all"
+                  className="w-full px-4 py-3 bg-surface rounded-xl border border-border focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all text-base text-foreground placeholder:text-muted-foreground/60"
                 />
               </div>
 
-              <div>
+              <div className="w-full">
                 <label
                   htmlFor="email"
-                  className="block text-sm font-medium mb-2"
+                  className="block text-sm font-medium mb-1.5 sm:mb-2 text-foreground"
                 >
                   Email
                 </label>
@@ -180,32 +190,32 @@ export const Contact = () => {
                   onChange={(e) =>
                     setFormData({ ...formData, email: e.target.value })
                   }
-                  className="w-full px-4 py-3 bg-surface rounded-xl border border-border focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all"
+                  className="w-full px-4 py-3 bg-surface rounded-xl border border-border focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all text-base text-foreground placeholder:text-muted-foreground/60"
                 />
               </div>
 
-              <div>
+              <div className="w-full">
                 <label
                   htmlFor="message"
-                  className="block text-sm font-medium mb-2"
+                  className="block text-sm font-medium mb-1.5 sm:mb-2 text-foreground"
                 >
                   Pesan
                 </label>
                 <textarea
                   id="message"
-                  rows={5}
+                  rows={4}
                   required
                   value={formData.message}
                   onChange={(e) =>
                     setFormData({ ...formData, message: e.target.value })
                   }
                   placeholder="Masukkan pesan kamu..."
-                  className="w-full px-4 py-3 bg-surface rounded-xl border border-border focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all resize-none"
+                  className="w-full px-4 py-3 bg-surface rounded-xl border border-border focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all resize-none text-base text-foreground placeholder:text-muted-foreground/60 sm:rows-5"
                 />
               </div>
 
               <Button
-                className="w-full"
+                className="w-full min-h-[48px] text-base font-medium transition-transform active:scale-[0.99]"
                 type="submit"
                 size="lg"
                 disabled={isLoading}
@@ -215,53 +225,53 @@ export const Contact = () => {
                 ) : (
                   <>
                     Kirim Pesan
-                    <Send className="w-5 h-5" />
+                    <Send className="w-4 h-4 sm:w-5 sm:h-5 shrink-0" />
                   </>
                 )}
               </Button>
 
               {submitStatus.type && (
                 <div
-                  className={`flex items-center gap-3 p-4 rounded-xl ${
+                  className={`flex items-start sm:items-center gap-3 p-3.5 sm:p-4 rounded-xl text-sm ${
                     submitStatus.type === "success"
                       ? "bg-green-500/10 border border-green-500/20 text-green-400"
                       : "bg-red-500/10 border border-red-500/20 text-red-400"
                   }`}
                 >
                   {submitStatus.type === "success" ? (
-                    <CheckCircle className="w-5 h-5 shrink-0" />
+                    <CheckCircle className="w-5 h-5 shrink-0 mt-0.5 sm:mt-0" />
                   ) : (
-                    <AlertCircle className="w-5 h-5 shrink-0" />
+                    <AlertCircle className="w-5 h-5 shrink-0 mt-0.5 sm:mt-0" />
                   )}
-                  <p className="text-sm">{submitStatus.message}</p>
+                  <p className="text-xs sm:text-sm leading-relaxed break-words">{submitStatus.message}</p>
                 </div>
               )}
             </form>
           </div>
 
-          {/* Contact Info */}
-          <div className="space-y-6 animate-fade-in animation-delay-400">
-            <div className="glass rounded-3xl p-8">
-              <h3 className="text-xl font-semibold mb-6">
+          {/* Contact Info Section */}
+          <div className="space-y-4 sm:space-y-6 animate-fade-in animation-delay-400 w-full">
+            <div className="glass rounded-2xl sm:rounded-3xl p-5 sm:p-7 md:p-8 w-full">
+              <h3 className="text-lg sm:text-xl font-semibold mb-4 sm:mb-6 text-foreground">
                 Informasi Kontak
               </h3>
-              <div className="space-y-4">
+              <div className="space-y-3 sm:space-y-4">
                 {contactInfo.map((item, i) => (
                   <a
                     key={i}
                     href={item.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center gap-4 p-4 rounded-xl hover:bg-surface transition-colors group"
+                    className="flex items-center gap-3.5 sm:gap-4 p-3 sm:p-4 rounded-xl hover:bg-surface transition-colors group w-full"
                   >
-                    <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center group-hover:bg-primary/20 transition-colors">
-                      <item.icon className="w-5 h-5 text-primary" />
+                    <div className="w-11 h-11 sm:w-12 sm:h-12 rounded-xl bg-primary/10 flex items-center justify-center shrink-0 group-hover:bg-primary/20 transition-colors">
+                      <item.icon className="w-5 h-5 text-primary shrink-0" />
                     </div>
-                    <div>
-                      <div className="text-sm text-muted-foreground">
+                    <div className="min-w-0 flex-1">
+                      <div className="text-xs sm:text-sm text-muted-foreground font-medium">
                         {item.label}
                       </div>
-                      <div className="font-medium group-hover:text-primary transition-colors">
+                      <div className="font-medium text-sm sm:text-base group-hover:text-primary transition-colors break-all sm:break-words">
                         {item.value}
                       </div>
                     </div>
@@ -271,12 +281,14 @@ export const Contact = () => {
             </div>
 
             {/* Availability Card */}
-            <div className="glass rounded-3xl p-8 border border-primary/30">
-              <div className="flex items-center gap-3 mb-4">
-                <span className="w-3 h-3 bg-green-500 rounded-full animate-pulse" />
-                <span className="font-medium">Terbuka untuk Kolaborasi</span>
+            <div className="glass rounded-2xl sm:rounded-3xl p-5 sm:p-7 md:p-8 border border-primary/30 w-full">
+              <div className="flex items-center gap-3 mb-3 sm:mb-4">
+                <span className="w-2.5 h-2.5 sm:w-3 sm:h-3 bg-green-500 rounded-full animate-pulse shrink-0" />
+                <span className="font-medium text-sm sm:text-base text-foreground">
+                  Terbuka untuk Kolaborasi
+                </span>
               </div>
-              <p className="text-muted-foreground text-sm leading-relaxed">
+              <p className="text-muted-foreground text-xs sm:text-sm leading-relaxed">
                 Lagi antusias ngerjain hal-hal baru seputar web. Kalau ada ide seru atau proyek yang mau dikerjain bareng, sapa aja lewat kontak di atas ya!
               </p>
             </div>
