@@ -1,136 +1,283 @@
-const experiences = [
+import { useState } from "react";
+import {
+  Code2,
+  FileCode2,
+  Palette,
+  Atom,
+  Layout,
+  Sparkles,
+  Database,
+  Server,
+  GitBranch,
+  Github,
+  Layers,
+  Globe,
+  Terminal,
+  Cpu,
+  CheckCircle2,
+} from "lucide-react";
+
+const skillsData = [
   {
-    period: "2022 — Present",
-    role: "Senior Frontend Engineer",
-    company: "Tech Innovators Inc.",
+    name: "HTML5",
+    category: "frontend",
+    categoryLabel: "Frontend",
+    icon: FileCode2,
     description:
-      "Leading frontend architecture for a suite of fintech products. Implemented micro-frontend architecture, reduced bundle size by 40%, and mentored a team of 5 developers.",
-    technologies: ["React", "TypeScript", "Next.js", "GraphQL"],
-    current: true,
+      "Menyusun struktur semantik halaman web yang rapi, ramah SEO, dan berstandar aksesibilitas tinggi.",
+    tags: ["Semantik", "Formulir", "Aksesibilitas"],
   },
   {
-    period: "2020 — 2022",
-    role: "Frontend Engineer",
-    company: "Digital Solutions Co.",
+    name: "CSS3",
+    category: "frontend",
+    categoryLabel: "Frontend",
+    icon: Palette,
     description:
-      "Built and maintained multiple React applications for enterprise clients. Introduced automated testing practices that improved code coverage to 85%.",
-    technologies: ["React", "Redux", "Jest", "Cypress"],
-    current: false,
+      "Merancang tata letak visual modern, animasi halus, serta sistem responsif untuk berbagai ukuran layar.",
+    tags: ["Flexbox", "CSS Grid", "Animasi & Media Queries"],
   },
   {
-    period: "2019 — 2020",
-    role: "Junior Developer",
-    company: "StartUp Labs",
+    name: "JavaScript",
+    category: "frontend",
+    categoryLabel: "Frontend",
+    icon: Code2,
     description:
-      "Contributed to the development of a SaaS platform from MVP to production. Collaborated with designers to implement pixel-perfect UI components.",
-    technologies: ["React", "Node.js", "MongoDB", "AWS"],
-    current: false,
+      "Membangun logika interaktif pada browser, manipulasi DOM, penanganan event, dan fitur asinkronus (ES6+).",
+    tags: ["ES6+", "DOM Manipulation", "Async/Await"],
   },
   {
-    period: "2018 — 2019",
-    role: "Freelance Developer",
-    company: "Self-Employed",
+    name: "React",
+    category: "frontend",
+    categoryLabel: "Frontend",
+    icon: Atom,
     description:
-      "Delivered custom web solutions for small businesses and startups. Built 15+ websites and applications, handling everything from design to deployment.",
-    technologies: ["JavaScript", "PHP", "WordPress", "MySQL"],
-    current: false,
+      "Mengembangkan aplikasi web berbasis komponen modular yang efisien, reusable, dan state management teratur.",
+    tags: ["Hooks", "Modular Components", "Single Page App"],
+  },
+  {
+    name: "Tailwind CSS",
+    category: "frontend",
+    categoryLabel: "Frontend",
+    icon: Layout,
+    description:
+      "Mempercepat proses penataan gaya antarmuka menggunakan pendekatan utility-first yang konsisten dan ringan.",
+    tags: ["Utility-First", "Responsive Layout", "Custom Theme"],
+  },
+  {
+    name: "Bootstrap",
+    category: "frontend",
+    categoryLabel: "Frontend",
+    icon: Layers,
+    description:
+      "Penyusunan prototipe dan antarmuka web cepat dengan sistem grid 12 kolom dan komponen siap pakai.",
+    tags: ["Grid System", "UI Components", "Responsive"],
+  },
+  {
+    name: "PHP & Laravel",
+    category: "backend",
+    categoryLabel: "Backend",
+    icon: Server,
+    description:
+      "Mengembangkan fungsionalitas sistem web berbasis arsitektur MVC, routing terstruktur, dan operasi CRUD.",
+    tags: ["MVC Pattern", "Sistem CRUD", "Blade Templating"],
+  },
+  {
+    name: "MySQL",
+    category: "backend",
+    categoryLabel: "Backend",
+    icon: Database,
+    description:
+      "Merancang skema database relasional, relasi antar-tabel, dan eksekusi query data yang terstruktur.",
+    tags: ["Relational Database", "Query SQL", "Data Integrity"],
+  },
+  {
+    name: "REST API",
+    category: "backend",
+    categoryLabel: "Backend",
+    icon: Globe,
+    description:
+      "Menghubungkan data backend dengan antarmuka frontend secara dinamis melalui pertukaran data JSON.",
+    tags: ["JSON", "Fetch API", "Integrasi Data"],
+  },
+  {
+    name: "Git & GitHub",
+    category: "tools",
+    categoryLabel: "Tools",
+    icon: GitBranch,
+    description:
+      "Melakukan version control kode sumber, manajemen cabang (branching), dan kolaborasi repositori proyek.",
+    tags: ["Version Control", "Commit History", "Kolaborasi"],
+  },
+  {
+    name: "Figma",
+    category: "tools",
+    categoryLabel: "Tools",
+    icon: Cpu,
+    description:
+      "Mempelajari dan mengeksplorasi rancangan UI/UX untuk kemudian di-slicing menjadi kode web yang presisi.",
+    tags: ["UI Slicing", "Wireframing", "Desain Antarmuka"],
+  },
+  {
+    name: "VS Code & Vercel",
+    category: "tools",
+    categoryLabel: "Tools",
+    icon: Terminal,
+    description:
+      "Lingkungan kerja koding yang efisien serta alur deployment cepat untuk mempublikasikan proyek ke internet.",
+    tags: ["Web Deployment", "Productivity", "Extensions"],
   },
 ];
 
+const categories = [
+  { id: "all", label: "Semua Keahlian" },
+  { id: "frontend", label: "Frontend & Styling" },
+  { id: "backend", label: "Backend & Data" },
+  { id: "tools", label: "Tools & Desain" },
+];
+
 export const Experience = () => {
+  const [activeTab, setActiveTab] = useState("all");
+
+  const filteredSkills =
+    activeTab === "all"
+      ? skillsData
+      : skillsData.filter((skill) => skill.category === activeTab);
+
   return (
     <section id="experience" className="py-32 relative overflow-hidden">
-      <div
-        className="absolute top-1/2 left-1/4 w-96
-       h-96 bg-primary/5 rounded-full blur-3xl -translate-y-1/2"
-      />
+      {/* Background Ambient Glows */}
+      <div className="absolute top-1/3 left-1/4 w-96 h-96 bg-primary/5 rounded-full blur-3xl -translate-y-1/2 pointer-events-none" />
+      <div className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-highlight/5 rounded-full blur-3xl pointer-events-none" />
 
       <div className="container mx-auto px-6 relative z-10">
         {/* Section Header */}
-        <div className="max-w-3xl mb-16">
-          <span
-            className="text-secondary-foreground text-sm
-           font-medium tracking-wider uppercase animate-fade-in"
-          >
-            Career Journey
+        <div className="text-center max-w-3xl mx-auto mb-12">
+          <span className="text-secondary-foreground text-sm font-medium tracking-wider uppercase animate-fade-in inline-flex items-center gap-2">
+            <Sparkles className="w-4 h-4 text-primary" />
+            Keahlian & Teknologi
           </span>
-          <h2
-            className="text-4xl md:text-5xl font-bold
-           mt-4 mb-6 animate-fade-in animation-delay-100
-            text-secondary-foreground"
-          >
-            Experience that{" "}
+          <h2 className="text-4xl md:text-5xl font-bold mt-4 mb-6 animate-fade-in animation-delay-100 text-secondary-foreground">
+            Keahlian yang saya{" "}
             <span className="font-serif italic font-normal text-white">
-              {" "}
-              speaks volumes.
+              kuasai.
             </span>
           </h2>
-
-          <p
-            className="text-muted-foreground
-           animate-fade-in animation-delay-200"
-          >
-            A timeline of my professional growth, from curious beginner to
-            senior engineer leading teams and building products at scale.
+          <p className="text-muted-foreground animate-fade-in animation-delay-200 leading-relaxed">
+            Kumpulan teknologi dan keterampilan yang saya pelajari serta gunakan
+            untuk mewujudkan antarmuka web yang rapi, responsif, dan fungsional.
           </p>
         </div>
 
-        {/* Timeline */}
-        <div className="relative">
-          <div className="timeline-glow absolute left-0 md:left-1/2 top-0 bottom-0 w-0.5 bg-linear-to-b from-primary/70 via-primary/30 to-transparent md:-translate-x-1/2 shadow-[0_0_25px_rgba(32,178,166,0.8)]" />
+        {/* Category Filter Tabs */}
+        <div className="flex flex-wrap justify-center gap-2 md:gap-3 mb-12 animate-fade-in animation-delay-300">
+          {categories.map((cat) => (
+            <button
+              key={cat.id}
+              onClick={() => setActiveTab(cat.id)}
+              className={`px-5 py-2.5 rounded-full text-sm font-medium transition-all duration-300 cursor-pointer ${
+                activeTab === cat.id
+                  ? "bg-primary text-primary-foreground shadow-lg shadow-primary/25"
+                  : "glass text-muted-foreground hover:text-foreground hover:bg-surface border border-border/60"
+              }`}
+            >
+              {cat.label}
+            </button>
+          ))}
+        </div>
 
-          {/* Experience Items */}
-          <div className="space-y-12">
-            {experiences.map((exp, idx) => (
+        {/* Skills Grid */}
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto mb-16">
+          {filteredSkills.map((skill, idx) => {
+            const Icon = skill.icon;
+            return (
               <div
-                key={idx}
-                className="relative grid md:grid-cols-2 gap-8 animate-fade-in"
-                style={{ animationDelay: `${(idx + 1) * 150}ms` }}
+                key={skill.name}
+                className="group glass p-6 rounded-2xl border border-border/60 hover:border-primary/50 transition-all duration-500 flex flex-col justify-between hover:shadow-xl hover:shadow-primary/5 hover:-translate-y-1 animate-fade-in"
+                style={{ animationDelay: `${(idx % 6) * 100}ms` }}
               >
-                {/* Timeline Dot */}
-                <div className="absolute left-0 md:left-1/2 top-0 w-3 h-3 bg-primary rounded-full -translate-x-1/2 ring-4 ring-background z-10">
-                  {exp.current && (
-                    <span className="absolute inset-0 rounded-full bg-primary animate-ping opacity-75" />
-                  )}
+                <div>
+                  {/* Top Bar: Icon & Category Badge */}
+                  <div className="flex items-center justify-between mb-5">
+                    <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center text-primary group-hover:bg-primary/20 group-hover:scale-110 transition-all duration-300">
+                      <Icon className="w-6 h-6" />
+                    </div>
+                    <span className="px-3 py-1 rounded-full bg-surface border border-border/60 text-xs font-medium text-muted-foreground group-hover:text-primary group-hover:border-primary/40 transition-colors">
+                      {skill.categoryLabel}
+                    </span>
+                  </div>
+
+                  {/* Title & Description */}
+                  <h3 className="text-xl font-bold mb-2 text-foreground group-hover:text-primary transition-colors">
+                    {skill.name}
+                  </h3>
+                  <p className="text-muted-foreground text-sm leading-relaxed mb-6">
+                    {skill.description}
+                  </p>
                 </div>
 
-                {/* Content */}
-                <div
-                  className={`pl-8 md:pl-0 ${
-                    idx % 2 === 0
-                      ? "md:pr-16 md:text-right"
-                      : "md:col-start-2 md:pl-16"
-                  }`}
-                >
-                  <div
-                    className={`glass p-6 rounded-2xl border border-primary/30 hover:border-primary/50 transition-all duration-500`}
-                  >
-                    <span className="text-sm text-primary font-medium">
-                      {exp.period}
-                    </span>
-                    <h3 className="text-xl font-semibold mt-2">{exp.role}</h3>
-                    <p className="text-muted-foreground">{exp.company}</p>
-                    <p className="text-sm text-muted-foreground mt-4">
-                      {exp.description}
-                    </p>
-                    <div
-                      className={`flex flex-wrap gap-2 mt-4 ${
-                        idx % 2 === 0 ? "md:justify-end" : ""
-                      }`}
+                {/* Tags / Subskills */}
+                <div className="pt-4 border-t border-border/40 flex flex-wrap gap-2">
+                  {skill.tags.map((tag, tIdx) => (
+                    <span
+                      key={tIdx}
+                      className="px-2.5 py-1 rounded-lg bg-surface/80 text-xs text-muted-foreground border border-border/40 font-medium"
                     >
-                      {exp.technologies.map((tech, techIdx) => (
-                        <span
-                          key={techIdx}
-                          className="px-3 py-1 bg-surface text-xs rounded-full text-muted-foreground"
-                        >
-                          {tech}
-                        </span>
-                      ))}
-                    </div>
-                  </div>
+                      {tag}
+                    </span>
+                  ))}
                 </div>
               </div>
-            ))}
+            );
+          })}
+        </div>
+
+        {/* Workflow Highlights / Nilai Tambah */}
+        <div className="glass p-8 rounded-3xl border border-primary/20 max-w-6xl mx-auto animate-fade-in animation-delay-500">
+          <div className="grid md:grid-cols-3 gap-8">
+            <div className="flex items-start gap-4">
+              <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center text-primary shrink-0">
+                <CheckCircle2 className="w-5 h-5" />
+              </div>
+              <div>
+                <h4 className="font-semibold text-base text-foreground mb-1">
+                  Slicing Figma ke Web
+                </h4>
+                <p className="text-xs text-muted-foreground leading-relaxed">
+                  Mengubah desain UI/UX dari Figma menjadi halaman web yang
+                  presisi, interaktif, dan nyaman diakses.
+                </p>
+              </div>
+            </div>
+
+            <div className="flex items-start gap-4">
+              <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center text-primary shrink-0">
+                <CheckCircle2 className="w-5 h-5" />
+              </div>
+              <div>
+                <h4 className="font-semibold text-base text-foreground mb-1">
+                  Desain Responsif
+                </h4>
+                <p className="text-xs text-muted-foreground leading-relaxed">
+                  Memastikan tata letak tetap rapi dan proporsional baik dibuka
+                  melalui layar smartphone, tablet, maupun monitor desktop.
+                </p>
+              </div>
+            </div>
+
+            <div className="flex items-start gap-4">
+              <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center text-primary shrink-0">
+                <CheckCircle2 className="w-5 h-5" />
+              </div>
+              <div>
+                <h4 className="font-semibold text-base text-foreground mb-1">
+                  Kode Bersih & Terstruktur
+                </h4>
+                <p className="text-xs text-muted-foreground leading-relaxed">
+                  Menerapkan penulisan kode komponen yang modular, mudah
+                  dipahami, dan siap untuk dikembangkan lebih lanjut.
+                </p>
+              </div>
+            </div>
           </div>
         </div>
       </div>

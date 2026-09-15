@@ -33,7 +33,7 @@ export const Navbar = () => {
           href="#"
           className="text-xl font-bold tracking-tight hover:text-primary"
         >
-          My.< span className="text-primary">Portofolio</span>
+          Diwangga.<span className="text-primary">Dev</span>
         </a>
 
         {/* Desktop Nav */}

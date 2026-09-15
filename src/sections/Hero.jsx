@@ -4,8 +4,7 @@ import {
   ChevronDown,
   Github,
   Linkedin,
-  Twitter,
-  Download,
+  Instagram,
 } from "lucide-react";
 import { AnimatedBorderButton } from "../components/AnimatedBorderButton";
 
@@ -92,8 +91,7 @@ export const Hero = () => {
                 </Button>
               </a>
               <AnimatedBorderButton>
-                <Download className="w-5 h-5" />
-                Download CV
+                Resume
               </AnimatedBorderButton>
             </div>
 
@@ -101,16 +99,35 @@ export const Hero = () => {
             <div className="flex items-center gap-4 animate-fade-in animation-delay-400">
               <span className="text-sm text-muted-foreground">Follow me: </span>
               {[
-                { icon: Github, href: "#" },
-                { icon: Linkedin, href: "#" },
-                { icon: Twitter, href: "#" },
+                {
+                  icon: Github,
+                  href: "https://github.com/Chainz-bit",
+                  label: "GitHub",
+                },
+                {
+                  icon: Linkedin,
+                  href: "https://www.linkedin.com/in/diwangga-jarmana-508429426/",
+                  label: "LinkedIn",
+                },
+                {
+                  icon: Instagram,
+                  href: "https://www.instagram.com/4n99a_d_17",
+                  label: "Instagram",
+                },
               ].map((social, idx) => (
                 <a
                   key={idx}
                   href={social.href}
+                  target={social.href.startsWith("#") ? undefined : "_blank"}
+                  rel={
+                    social.href.startsWith("#")
+                      ? undefined
+                      : "noopener noreferrer"
+                  }
+                  aria-label={social.label}
                   className="p-2 rounded-full glass hover:bg-primary/10 hover:text-primary transition-all duration-300"
                 >
-                  {<social.icon className="w-5 h-5" />}
+                  <social.icon className="w-5 h-5" />
                 </a>
               ))}
             </div>
