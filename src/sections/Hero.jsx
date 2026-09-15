@@ -87,9 +87,15 @@ export const Hero = () => {
                   Lihat Proyek <ArrowRight className="w-5 h-5" />
                 </Button>
               </a>
-              <AnimatedBorderButton>
-                Resume
-              </AnimatedBorderButton>
+              <a
+                href="/cv-diwangga.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <AnimatedBorderButton as="span">
+                  Resume
+                </AnimatedBorderButton>
+              </a>
             </div>
 
             {/* Social Links */}
