@@ -88,7 +88,7 @@ export const Hero = () => {
                 </Button>
               </a>
               <a
-                href="/cv-diwangga.pdf"
+                href="/CV_Diwangga_Jarmana.pdf"
                 target="_blank"
                 rel="noopener noreferrer"
               >
